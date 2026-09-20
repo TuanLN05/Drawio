@@ -1,0 +1,69 @@
+********************************************************************************
+Obsolete PIO Core v4.3.4 is used (previous was 6.2.0)
+Please remove multiple PIO Cores from a system:
+https://docs.platformio.org/page/faq.html#multiple-pio-cores-in-a-system
+********************************************************************************
+Processing genericSTM32F103C8 (platform: ststm32; board: genericSTM32F103C8; framework: cmsis)
+--------------------------------------------------------------------------------
+Error: Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/platformio/__main__.py", line 109, in main
+    cli()  # pylint: disable=no-value-for-parameter
+  File "/usr/lib/python3/dist-packages/click/core.py", line 1128, in __call__
+    return self.main(*args, **kwargs)
+  File "/usr/lib/python3/dist-packages/click/core.py", line 1053, in main
+    rv = self.invoke(ctx)
+  File "/usr/lib/python3/dist-packages/platformio/commands/__init__.py", line 44, in invoke
+    return super(PlatformioCLI, self).invoke(ctx)
+  File "/usr/lib/python3/dist-packages/click/core.py", line 1659, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "/usr/lib/python3/dist-packages/click/core.py", line 1395, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/usr/lib/python3/dist-packages/click/core.py", line 754, in invoke
+    return __callback(*args, **kwargs)
+  File "/usr/lib/python3/dist-packages/click/decorators.py", line 26, in new_func
+    return f(get_current_context(), *args, **kwargs)
+  File "/usr/lib/python3/dist-packages/platformio/commands/run/command.py", line 128, in cli
+    process_env(
+  File "/usr/lib/python3/dist-packages/platformio/commands/run/command.py", line 170, in process_env
+    result = {"env": name, "duration": time(), "succeeded": ep.process()}
+  File "/usr/lib/python3/dist-packages/platformio/commands/run/processor.py", line 79, in process
+    result = p.run(build_vars, build_targets, self.silent, self.verbose, self.jobs)
+  File "/usr/lib/python3/dist-packages/platformio/managers/platform.py", line 414, in run
+    self.install_packages(silent=True)
+  File "/usr/lib/python3/dist-packages/platformio/managers/platform.py", line 307, in install_packages
+    self.pm.install(name, version, silent=silent, force=force)
+  File "/usr/lib/python3/dist-packages/platformio/managers/package.py", line 672, in install
+    package_dir = self.get_package_dir(name, requirements, url)
+  File "/usr/lib/python3/dist-packages/platformio/managers/package.py", line 415, in get_package_dir
+    manifest = self.get_package(name, requirements, url)
+  File "/usr/lib/python3/dist-packages/platformio/managers/package.py", line 384, in get_package
+    for manifest in self.get_installed():
+  File "/usr/lib/python3/dist-packages/platformio/managers/package.py", line 374, in get_installed
+    manifest = self.load_manifest(pkg_dir)
+  File "/usr/lib/python3/dist-packages/platformio/managers/package.py", line 347, in load_manifest
+    manifest = ManifestParserFactory.new_from_file(manifest_path).as_dict()
+  File "/usr/lib/python3/dist-packages/platformio/package/manifest/parser.py", line 73, in new_from_file
+    return ManifestParserFactory.new(
+  File "/usr/lib/python3/dist-packages/platformio/package/manifest/parser.py", line 123, in new
+    return cls(contents, remote_url, package_dir)
+  File "/usr/lib/python3/dist-packages/platformio/package/manifest/parser.py", line 136, in __init__
+    self._data = self.normalize_repository(self._data)
+  File "/usr/lib/python3/dist-packages/platformio/package/manifest/parser.py", line 174, in normalize_repository
+    url = (data.get("repository") or {}).get("url")
+AttributeError: 'str' object has no attribute 'get'
+
+============================================================
+
+An unexpected error occurred. Further steps:
+
+* Verify that you have the latest version of PlatformIO using
+  `pip install -U platformio` command
+
+* Try to find answer in FAQ Troubleshooting section
+  https://docs.platformio.org/page/faq.html
+
+* Report this problem to the developers
+  https://github.com/platformio/platformio-core/issues
+
+============================================================
+
