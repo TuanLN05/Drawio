@@ -1,0 +1,297 @@
+
+Discarded input sections
+
+ .group         0x00000000        0xc Build/src/main.o
+ .group         0x00000000        0xc Build/src/main.o
+ .group         0x00000000        0xc Build/src/main.o
+ .text          0x00000000        0x0 Build/src/main.o
+ .data          0x00000000        0x0 Build/src/main.o
+ .bss           0x00000000        0x0 Build/src/main.o
+ .text.delay    0x00000000       0x28 Build/src/main.o
+ .comment       0x00000000       0x44 Build/src/main.o
+ .group         0x00000000        0xc Build/Inc/pwm/pwm.o
+ .group         0x00000000        0xc Build/Inc/pwm/pwm.o
+ .group         0x00000000        0xc Build/Inc/pwm/pwm.o
+ .text          0x00000000        0x0 Build/Inc/pwm/pwm.o
+ .data          0x00000000        0x0 Build/Inc/pwm/pwm.o
+ .bss           0x00000000        0x0 Build/Inc/pwm/pwm.o
+ .debug_macro   0x00000000      0xac0 Build/Inc/pwm/pwm.o
+ .debug_macro   0x00000000      0x34e Build/Inc/pwm/pwm.o
+ .debug_macro   0x00000000      0x129 Build/Inc/pwm/pwm.o
+ .comment       0x00000000       0x44 Build/Inc/pwm/pwm.o
+ .group         0x00000000        0xc Build/Inc/uart/uart.o
+ .group         0x00000000        0xc Build/Inc/uart/uart.o
+ .group         0x00000000        0xc Build/Inc/uart/uart.o
+ .text          0x00000000        0x0 Build/Inc/uart/uart.o
+ .data          0x00000000        0x0 Build/Inc/uart/uart.o
+ .bss           0x00000000        0x0 Build/Inc/uart/uart.o
+ .text.uartWrite
+                0x00000000       0x10 Build/Inc/uart/uart.o
+ .debug_macro   0x00000000      0xac0 Build/Inc/uart/uart.o
+ .debug_macro   0x00000000      0x34e Build/Inc/uart/uart.o
+ .debug_macro   0x00000000      0x129 Build/Inc/uart/uart.o
+ .comment       0x00000000       0x44 Build/Inc/uart/uart.o
+ .group         0x00000000        0xc Build/src/system_stm32f1xx.o
+ .group         0x00000000        0xc Build/src/system_stm32f1xx.o
+ .group         0x00000000        0xc Build/src/system_stm32f1xx.o
+ .text          0x00000000        0x0 Build/src/system_stm32f1xx.o
+ .data          0x00000000        0x0 Build/src/system_stm32f1xx.o
+ .bss           0x00000000        0x0 Build/src/system_stm32f1xx.o
+ .text.SystemCoreClockUpdate
+                0x00000000       0x4c Build/src/system_stm32f1xx.o
+ .rodata.AHBPrescTable
+                0x00000000       0x10 Build/src/system_stm32f1xx.o
+ .debug_macro   0x00000000      0xac0 Build/src/system_stm32f1xx.o
+ .debug_macro   0x00000000      0x34e Build/src/system_stm32f1xx.o
+ .debug_macro   0x00000000      0x129 Build/src/system_stm32f1xx.o
+ .comment       0x00000000       0x44 Build/src/system_stm32f1xx.o
+ .text          0x00000000        0x0 Build/startup_stm32f103xb.o
+ .data          0x00000000        0x0 Build/startup_stm32f103xb.o
+ .bss           0x00000000        0x0 Build/startup_stm32f103xb.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+FLASH            0x08000000         0x00010000         xr
+RAM              0x20000000         0x00005000         xrw
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD Build/src/main.o
+LOAD Build/Inc/pwm/pwm.o
+LOAD Build/Inc/uart/uart.o
+LOAD Build/src/system_stm32f1xx.o
+LOAD Build/startup_stm32f103xb.o
+                0x20005000                        _estack = (ORIGIN (RAM) + LENGTH (RAM))
+
+.isr_vector     0x08000000      0x130
+                0x08000000                        . = ALIGN (0x4)
+ *(.isr_vector)
+ .isr_vector    0x08000000      0x130 Build/startup_stm32f103xb.o
+                0x08000130                        . = ALIGN (0x4)
+
+.text           0x08000130      0x7cc
+                0x08000130                        . = ALIGN (0x4)
+ *(.text*)
+ .text.startup.main
+                0x08000130       0x1c Build/src/main.o
+                0x08000130                main
+ .text.pwm_config
+                0x0800014c       0x74 Build/Inc/pwm/pwm.o
+                0x0800014c                pwm_config
+ .text.pwm_set_percent
+                0x080001c0       0x3c Build/Inc/pwm/pwm.o
+                0x080001c0                pwm_set_percent
+ .text.pwm_get_percent
+                0x080001fc        0xc Build/Inc/pwm/pwm.o
+                0x080001fc                pwm_get_percent
+ .text.pwm_turn_on
+                0x08000208       0x38 Build/Inc/pwm/pwm.o
+                0x08000208                pwm_turn_on
+ .text.pwm_turn_off
+                0x08000240       0x38 Build/Inc/pwm/pwm.o
+                0x08000240                pwm_turn_off
+ .text.pwm_is_enabled
+                0x08000278        0xc Build/Inc/pwm/pwm.o
+                0x08000278                pwm_is_enabled
+ .text.uartWritePercent
+                0x08000284       0x64 Build/Inc/uart/uart.o
+ .text.USART1_IRQHandler
+                0x080002e8      0x2ec Build/Inc/uart/uart.o
+                0x080002e8                USART1_IRQHandler
+ .text.uart_config
+                0x080005d4       0x68 Build/Inc/uart/uart.o
+                0x080005d4                uart_config
+ .text.uartWriteString
+                0x0800063c       0x1c Build/Inc/uart/uart.o
+                0x0800063c                uartWriteString
+ .text.uartProcessResponses
+                0x08000658      0x158 Build/Inc/uart/uart.o
+                0x08000658                uartProcessResponses
+ .text.SystemInit
+                0x080007b0       0x70 Build/src/system_stm32f1xx.o
+                0x080007b0                SystemInit
+ .text.__libc_init_array
+                0x08000820        0x4 Build/src/system_stm32f1xx.o
+                0x08000820                __libc_init_array
+ .text.Reset_Handler
+                0x08000824       0x4c Build/startup_stm32f103xb.o
+                0x08000824                Reset_Handler
+ .text.Default_Handler
+                0x08000870        0x2 Build/startup_stm32f103xb.o
+ *(.rodata*)
+ *fill*         0x08000872        0x2 
+ .rodata.main.str1.4
+                0x08000874       0x75 Build/src/main.o
+                                 0x2f (size before relaxing)
+ .rodata.uartProcessResponses.str1.4
+                0x080008e9       0x51 Build/Inc/uart/uart.o
+ *fill*         0x080008e9        0x3 
+ .rodata.command_status
+                0x080008ec        0x7 Build/Inc/uart/uart.o
+ *fill*         0x080008f3        0x1 
+ .rodata.command_off
+                0x080008f4        0x4 Build/Inc/uart/uart.o
+ .rodata.command_on
+                0x080008f8        0x3 Build/Inc/uart/uart.o
+ *(.glue_7)
+ .glue_7        0x080008fb        0x0 linker stubs
+ *(.glue_7t)
+ .glue_7t       0x080008fb        0x0 linker stubs
+                0x080008fc                        . = ALIGN (0x4)
+ *fill*         0x080008fb        0x1 
+                0x080008fc                        _etext = .
+
+.vfp11_veneer   0x080008fc        0x0
+ .vfp11_veneer  0x080008fc        0x0 linker stubs
+
+.v4_bx          0x080008fc        0x0
+ .v4_bx         0x080008fc        0x0 linker stubs
+
+.iplt           0x080008fc        0x0
+ .iplt          0x080008fc        0x0 Build/src/main.o
+
+.rel.dyn        0x080008fc        0x0
+ .rel.iplt      0x080008fc        0x0 Build/src/main.o
+
+.ARM.extab
+ *(.ARM.extab*)
+
+.ARM.exidx      0x080008fc        0x0
+                0x080008fc                        __exidx_start = .
+ *(.ARM.exidx*)
+                0x080008fc                        __exidx_end = .
+                0x080008fc                        _sidata = LOADADDR (.data)
+
+.data           0x20000000        0x8 load address 0x080008fc
+                0x20000000                        . = ALIGN (0x4)
+                0x20000000                        _sdata = .
+ *(.data*)
+ .data.configured_percent
+                0x20000000        0x1 Build/Inc/pwm/pwm.o
+ *fill*         0x20000001        0x3 
+ .data.SystemCoreClock
+                0x20000004        0x4 Build/src/system_stm32f1xx.o
+                0x20000004                SystemCoreClock
+                0x20000008                        . = ALIGN (0x4)
+                0x20000008                        _edata = .
+
+.igot.plt       0x20000008        0x0 load address 0x08000904
+ .igot.plt      0x20000008        0x0 Build/src/main.o
+
+.bss            0x20000008       0x40 load address 0x08000904
+                0x20000008                        . = ALIGN (0x4)
+                0x20000008                        _sbss = .
+ *(.bss*)
+ .bss.led_enabled
+                0x20000008        0x1 Build/Inc/pwm/pwm.o
+ .bss.response_tail
+                0x20000009        0x1 Build/Inc/uart/uart.o
+ .bss.response_head
+                0x2000000a        0x1 Build/Inc/uart/uart.o
+ *fill*         0x2000000b        0x1 
+ .bss.response_queue
+                0x2000000c       0x18 Build/Inc/uart/uart.o
+ .bss.rx_overflow
+                0x20000024        0x1 Build/Inc/uart/uart.o
+ .bss.rx_length
+                0x20000025        0x1 Build/Inc/uart/uart.o
+ *fill*         0x20000026        0x2 
+ .bss.rx_buffer
+                0x20000028       0x20 Build/Inc/uart/uart.o
+ *(COMMON)
+                0x20000048                        . = ALIGN (0x4)
+                0x20000048                        _ebss = .
+
+/DISCARD/
+ *(.comment)
+ *(.note*)
+
+.ARM.attributes
+                0x00000000       0x2b
+ *(.ARM.attributes)
+ .ARM.attributes
+                0x00000000       0x2d Build/src/main.o
+ .ARM.attributes
+                0x0000002d       0x2d Build/Inc/pwm/pwm.o
+ .ARM.attributes
+                0x0000005a       0x2d Build/Inc/uart/uart.o
+ .ARM.attributes
+                0x00000087       0x2d Build/src/system_stm32f1xx.o
+ .ARM.attributes
+                0x000000b4       0x21 Build/startup_stm32f103xb.o
+OUTPUT(Bin/b5_w2_new.elf elf32-littlearm)
+LOAD linker stubs
+
+.debug_info     0x00000000     0x12da
+ .debug_info    0x00000000      0x173 Build/src/main.o
+ .debug_info    0x00000173      0x36b Build/Inc/pwm/pwm.o
+ .debug_info    0x000004de      0xbc2 Build/Inc/uart/uart.o
+ .debug_info    0x000010a0      0x23a Build/src/system_stm32f1xx.o
+
+.debug_abbrev   0x00000000      0x69b
+ .debug_abbrev  0x00000000      0x11c Build/src/main.o
+ .debug_abbrev  0x0000011c      0x14d Build/Inc/pwm/pwm.o
+ .debug_abbrev  0x00000269      0x31f Build/Inc/uart/uart.o
+ .debug_abbrev  0x00000588      0x113 Build/src/system_stm32f1xx.o
+
+.debug_loclists
+                0x00000000      0x487
+ .debug_loclists
+                0x00000000       0x29 Build/src/main.o
+ .debug_loclists
+                0x00000029       0x55 Build/Inc/pwm/pwm.o
+ .debug_loclists
+                0x0000007e      0x3d6 Build/Inc/uart/uart.o
+ .debug_loclists
+                0x00000454       0x33 Build/src/system_stm32f1xx.o
+
+.debug_aranges  0x00000000       0xe8
+ .debug_aranges
+                0x00000000       0x28 Build/src/main.o
+ .debug_aranges
+                0x00000028       0x48 Build/Inc/pwm/pwm.o
+ .debug_aranges
+                0x00000070       0x48 Build/Inc/uart/uart.o
+ .debug_aranges
+                0x000000b8       0x30 Build/src/system_stm32f1xx.o
+
+.debug_rnglists
+                0x00000000      0x172
+ .debug_rnglists
+                0x00000000       0x19 Build/src/main.o
+ .debug_rnglists
+                0x00000019       0x3d Build/Inc/pwm/pwm.o
+ .debug_rnglists
+                0x00000056       0xfd Build/Inc/uart/uart.o
+ .debug_rnglists
+                0x00000153       0x1f Build/src/system_stm32f1xx.o
+
+.debug_macro    0x00000000     0x1053
+ .debug_macro   0x00000000       0x47 Build/src/main.o
+ .debug_macro   0x00000047      0xac0 Build/src/main.o
+ .debug_macro   0x00000b07      0x34e Build/src/main.o
+ .debug_macro   0x00000e55      0x129 Build/src/main.o
+ .debug_macro   0x00000f7e       0x3d Build/Inc/pwm/pwm.o
+ .debug_macro   0x00000fbb       0x53 Build/Inc/uart/uart.o
+ .debug_macro   0x0000100e       0x45 Build/src/system_stm32f1xx.o
+
+.debug_line     0x00000000      0xfe7
+ .debug_line    0x00000000      0x167 Build/src/main.o
+ .debug_line    0x00000167      0x2a5 Build/Inc/pwm/pwm.o
+ .debug_line    0x0000040c      0x9be Build/Inc/uart/uart.o
+ .debug_line    0x00000dca      0x21d Build/src/system_stm32f1xx.o
+
+.debug_str      0x00000000     0x4130
+ .debug_str     0x00000000     0x4130 Build/src/main.o
+                               0x3e66 (size before relaxing)
+ .debug_str     0x00004130     0x3f34 Build/Inc/pwm/pwm.o
+ .debug_str     0x00004130     0x4123 Build/Inc/uart/uart.o
+ .debug_str     0x00004130     0x3f1a Build/src/system_stm32f1xx.o
+
+.debug_frame    0x00000000      0x1b0
+ .debug_frame   0x00000000       0x44 Build/src/main.o
+ .debug_frame   0x00000044       0x84 Build/Inc/pwm/pwm.o
+ .debug_frame   0x000000c8       0xa8 Build/Inc/uart/uart.o
+ .debug_frame   0x00000170       0x40 Build/src/system_stm32f1xx.o
